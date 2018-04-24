@@ -4,13 +4,13 @@ class Game
 
   def initialize(num_of_players)
   # @num_of_players = (1..num_of_players).map { Player.new }
-
-    # random_name = ['Gabe', 'Morgan', 'Matt', 'Sadie', "Wendy"].sample
-    # @name1 = "Player1"
-    # @name2 = "Player2"
+    random_name1 = ['Gabe', 'Morgan', 'Matt', 'Sadie', "Wendy"].sample
+    random_name2 = ['Gabe', 'Morgan', 'Matt', 'Sadie', "Wendy"].sample
+    # @player1 = Player.new("Player1")
+    # @player2 = Player.new("Player2")
     # @current_player = @name1
-    @player1 = Player.new("Player 1")
-    @player2 = Player.new("Player 2")
+    @player1 = Player.new(random_name1)
+    @player2 = Player.new(random_name2)
     @current_player = @player1
     start_game
   end
@@ -31,9 +31,9 @@ class Game
     answer = $stdin.gets.chomp
 
     if answer == "#{num1 + num2}"
-      puts "Good job! Your wits saved one of your precious lives..."
+      puts "Good job, #{@current_player.name}! Your wits saved one of your precious lives..."
     else
-      puts "Wrong, you suck and lost a life."
+      puts "Wrong, #{@current_player.name} you suck and lost a life."
       @current_player.lose_life
       p @current_player.lives
     end
@@ -45,6 +45,6 @@ class Game
     while @player1.is_alive and @player2.is_alive
       play_game
     end
-    puts 'Game over'
+    puts "Game over #{@current_player.name} wins!"
   end
 end
